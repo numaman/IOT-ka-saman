@@ -38,35 +38,36 @@ GPIO.setup(red1,GPIO.OUT)
 GPIO.output(red,0)
 GPIO.output(red1,0)
 def action(msg):
-chat_id=msg['chat']['id']
-command=msg['text']
-print('Got command: %s' %command)
+  chat_id=msg['chat']['id']
+  command=msg['text']
+  print('Got command: %s' %command)
+  
+  if 'On' in command:
+    message="Turn On"
+    message=message+"red"
+    GPIO.output(red,1) GPIO.output(red1,1)
+    bot.sendMessage(chat_id, message)
+    if 'Blink' in command:
+    while 'Blink':
+    message="Turn On"
+    message=message+"red"
+    GPIO.output(red,1)
+    time.sleep(0.5)
+    GPIO.output(red,0)
+    time.sleep(0.5)
+    GPIO.output(red1,1)
+    time.sleep(0.5)
+    GPIO.output(red1,0)
+    time.sleep(0.5)
+    bot.sendMessage(chat_id,message)
 
-if 'On' in command:
-  message="Turn On"
-  message=message+"red"
-  GPIO.output(red,1) GPIO.output(red1,1)
-  bot.sendMessage(chat_id, message)
-  if 'Blink' in command:
-  while 'Blink':
-  message="Turn On"
-  message=message+"red"
-  GPIO.output(red,1)
-  time.sleep(0.5)
-  GPIO.output(red,0)
-  time.sleep(0.5)
-  GPIO.output(red1,1)
-  time.sleep(0.5)
-  GPIO.output(red1,0)
-  time.sleep(0.5)
-  bot.sendMessage(chat_id,message)
-
-if 'Off' in command:
-  message="Turn Off"
-  message=message+"red"
-  GPIO.output(red,0)
-  GPIO.output(red1,0)
-  bot.sendMessage(chat id, message)
+  if 'Off' in command:
+    message="Turn Off"
+    message=message+"red"
+    GPIO.output(red,0)
+    GPIO.output(red1,0)
+    bot.sendMessage(chat id, message)
+    
 bot = telepot.Bot('7443147530:AAFyEj6xVtdBajuAkjo5dLawpDodbgjX9L0')
 print(bot.getMe())
 MessageLoop (bot,action).run as thread()
