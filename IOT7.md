@@ -25,6 +25,8 @@ Click on actor-led-7segment-4numbers.zip folder. Click on Download Button.
 3. Unzip the file.
 4. Write the python script to display Time & save it in the actor-led-7segment-4numbers folder & run it
 5. CODE:
+
+
 from time import sleep
 import tm1637
 try:
