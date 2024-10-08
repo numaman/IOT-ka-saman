@@ -8,6 +8,8 @@ LED4 = 21
 2) Connect GND pin of raspberry Pi to GROUND of LED Module.
 GND = 39
 3) Write Code in Thonny IDLE.
+
+
 CODE:
 import RPi.GPIO as GPIO
 import time
