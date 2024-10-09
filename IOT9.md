@@ -74,3 +74,46 @@ MessageLoop (bot,action).run as thread()
 print('I am Listening....”)
 while 1:
 time.sleep(10)
+
+
+CODE 2 :
+import random
+import datetime
+import time
+import telepot
+import RPi.GPIO as GPIO
+from telepot.loop import MessageLoop
+
+red=31
+
+now= datetime.datetime.now()
+GPIO.setmode(GPIO.BOARD)
+GPIO.setwarnings(False)
+
+GPIO.setup(red,GPIO.OUT)
+GPIO.output(red,0)
+
+def action(msg):
+    chat_id=msg['chat']['id']
+    command=msg['text']
+    
+  print ('Got command:%s'%command)
+    if 'On' in command:
+        message= "Turn On"
+        message=message+"red"
+        GPIO.output(red,1)
+        bot.sendMessage(chat_id,"Command received");
+        
+  if 'Off' in command:
+        message= "Turn Off"
+        message=message+"red"
+        GPIO.output(red,0)
+        bot.sendMessage(chat_id,"Command received");
+       
+bot= telepot.Bot('7504375765:AAEdMmGiN7H1ns9v5V7I0ifrQeskmGEskBQ')
+print(bot.getMe())
+MessageLoop(bot, action).run_as_thread()
+print('I am listening...')
+
+while 1:
+    time.sleep(10)
