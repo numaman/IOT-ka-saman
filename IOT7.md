@@ -35,16 +35,34 @@ except ImportError:
 import thread as thread
 Display = tm1637.TM1637(CLK=21,DIO=20,brightness=1.0)
 try:
-print ("Starting clock in the background (press CTRL + C to stop):")
-Display StartClock(military_time=True)
-Display.SetBrightness(1.0)
-while True:
-Display.ShowDoublepoint(True)
-sleep(1)
-Display Show Doublepoint(False)
-sleep(1)
-Display StopClock()
-thread.interrupt_main()
+  print ("Starting clock in the background (press CTRL + C to stop):")
+  Display StartClock(military_time=True)
+  Display.SetBrightness(1.0)
+  while True:
+    Display.ShowDoublepoint(True)
+    sleep(1)
+    Display Show Doublepoint(False)
+    sleep(1)
+    Display StopClock()
+    thread.interrupt_main()
 except Keyboardinterrupt:
-print ("Properly closing the clock and open GPIO pins")
-Display.cleanup()
+  print ("Properly closing the clock and open GPIO pins")
+  Display.cleanup()
+
+
+CODE:
+import tm1637
+import time
+
+display = tm1637.TM1637(DIO=29,CLK=31,brightness=1.0)
+print("Showing time of the clock")
+display.StartClock(miltary_time=True)
+try:
+	while 1:
+		display.ShowDoublePoint(True)
+		time.sleep(1)
+		display.ShowDoubleTime(False)
+
+except KeyboardIterrupt:
+	display.StopClock()
+	display.cleanup()
