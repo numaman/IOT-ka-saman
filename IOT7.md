@@ -66,3 +66,6 @@ try:
 except KeyboardIterrupt:
 	display.StopClock()
 	display.cleanup()
+
+
+ sudo python3 time.py
