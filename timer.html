@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <title>Document</title>
+</head>
+<style>
+    #countdown {
+        display: flex;
+        gap: 5px;
+        font-size: 30px;
+    }
+</style>
+<body>
+    <div id="countdown">
+        <div class="Time" id="day">00</div>Days
+        <div class="Time" id="hour">00</div>Hours
+        <div class="Time" id="minute">00</div>Minutes
+        <div class="Time" id="second">00</div>Seconds
+    </div>
+    <script>
+        $("document").ready(function(){
+            const eventDate = new Date("2024-12-24T23:59:59").getTime();
+            const countDownString = setInterval(function(){
+                const now = new Date().getTime();
+                const distance = eventDate - now;
+                const days = Math.floor(distance/(1000*60*60*24));
+                const hours = Math.floor(distance%(1000*60*60*24)/(1000*60*60));
+                const minutes = Math.floor(distance%(1000*60*60)/(1000*60));
+                const seconds = Math.floor(distance%(1000*60)/(1000));
+
+                $("#day").text(String(days).padStart(2,"0"))
+                $("#hour").text(String(hours).padStart(2,"0"))
+                $("#minute").text(String(minutes).padStart(2,"0"))
+                $("#second").text(String(seconds).padStart(2,"0"))
+
+                if(distance <=0){
+                    clearInterval(countDownFunction)
+                    $("#countdown").html("<h1>The event has started</h1>")
+                }
+            },1000);
+        });
+    </script>
+    
+</body>
+</html>
